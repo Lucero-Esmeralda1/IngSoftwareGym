@@ -1,0 +1,29 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Contenido + Sidebar */
+.content-wrapper {
+  display: flex;
+  flex: 1;
+}
+
+/* Donde va cada página */
+.content {
+  margin-left: 220px;   /* igual al ancho del sidebar */
+  padding: 25px;
+  flex: 1;
+}
+
+
+/* .main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+} */
