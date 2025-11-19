@@ -1,4 +1,27 @@
-.sidebar {
+.sidebar-container {
+  width: 240px;
+  height: 100vh;
+  position: fixed;
+  top: 64px; /* debajo del navbar */
+  left: 0;
+  background-color: #111827;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-container li {
+  margin-bottom: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+/* .sidebar {
   width: 220px;
   background: #111;
   color: #fff;
@@ -19,7 +42,7 @@
 .sidebar-header h2 {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #ffde59; /* aesthetic gold */
+  color: #ffde59; 
 }
 
 .sidebar-menu {
@@ -42,4 +65,4 @@
 .sidebar-menu a:hover {
   color: #ffde59;
   padding-left: 5px;
-}
+} */
