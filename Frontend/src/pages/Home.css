@@ -1,4 +1,101 @@
-.home-container {
+/* El hero ocupa toda la pantalla */
+/* .home-content {
+  margin-left: 240px; 
+  padding: 20px;
+} */
+.home-content {
+  width: 100%;
+  margin-left: 240px; /* por el Sidebar */
+  margin-top: 70px; /* por el Navbar */
+}
+
+.banner-container {
+  width: 100%;
+  height: auto;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Recorta la imagen si es necesario */
+  display: block;
+}
+
+/* .banner-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.banner-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 15px;
+} */
+
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  background-image: url("https://smartfit.com.mx/wp-content/uploads/2023/01/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.hero-content {
+  width: 90%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Caja amarilla */
+.hero-box {
+  background: #ffc400;
+  color: black;
+  padding: 30px 40px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.hero-box h1 {
+  font-size: 48px;
+  line-height: 1.1;
+}
+
+.hero-offer {
+  text-align: right;
+  color: white;
+  font-weight: bold;
+}
+
+.hero-offer h3 {
+  font-size: 40px;
+}
+
+.precio {
+  font-size: 150px;
+  font-weight: 900;
+  line-height: 0.8;
+}
+
+.precio span {
+  font-size: 60px;
+}
+
+.hero-offer p {
+  font-size: 30px;
+}
+
+
+
+/* .home-container {
   height: 100vh;
   background: linear-gradient(135deg, #111, #1a1a1a);
   display: flex;
@@ -46,7 +143,7 @@
 .error {
   color: #ff4d6d;
   font-weight: bold;
-}
+} */
 
 
 

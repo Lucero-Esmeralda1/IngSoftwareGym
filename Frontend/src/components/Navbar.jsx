@@ -1,20 +1,84 @@
-import "../components/Navbar.css";
+import "./Navbar.css";
 
-const Navbar = () => {
+export default function Navbar() {
   return (
-    <nav className="navbar-container">
-      <h1 className="navbar-title">Gym Aesthetic</h1>
+    <nav className="navbar">
+      {/* LOGO */}
+      <div className="navbar-left">
+        <img 
+          src="/logo.png" 
+          alt="Logo"
+          className="navbar-logo"
+        />
+      </div>
 
-      <div className="navbar-links">
-        <a href="/">Inicio</a>
-        <a href="/asistencias">Asistencias</a>
-        <a href="/clientes">Clientes</a>
+      {/* LINKS */}
+      <div className="navbar-right">
+        <a href="#" className="nav-link">Gimnasios</a>
+        <a href="#" className="nav-link">Tu Espacio</a>
+
+        <button className="inscribete-btn">
+          ¡Inscríbete ya!
+        </button>
       </div>
     </nav>
   );
-};
+}
 
-export default Navbar;
+
+// import { useState } from "react";
+// import Sidebar from "./Sidebar";
+// import "./Navbar.css";
+
+// export default function Navbar() {
+//   const [isOpen, setIsOpen] = useState(false);
+
+//   return (
+//     <>
+//       <nav className="navbar">
+//         <h2 className="logo">Gym Aesthetic</h2>
+
+//         <ul className="nav-links">
+//           <li>Gimnasios</li>
+//           <li>Planes</li>
+//           <li>Nosotros</li>
+//         </ul>
+
+//         <button className="btn-inscribete">Inscríbete Ya!</button>
+
+//         {/* Ícono de menú */}
+//         <div className="menu-icon" onClick={() => setIsOpen(true)}>
+//           &#9776; {/* tres líneas horizontales */}
+//         </div>
+//       </nav>
+
+//       {/* Sidebar */}
+//       <Sidebar isOpen={isOpen} onClose={() => setIsOpen(false)} />
+//     </>
+//   );
+// }
+
+
+
+// import "../components/Navbar.css";
+
+// const Navbar = () => {
+//   return (
+//     <nav className="navbar-container">
+//       <h1 className="navbar-title">Gym Aesthetic</h1>
+
+//       <div className="navbar-links">
+//         <a href="/">Inicio</a>
+//         <a href="/asistencias">Asistencias</a>
+//         <a href="/clientes">Clientes</a>
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;
+
+
 
 
 // // src/components/Navbar.jsx

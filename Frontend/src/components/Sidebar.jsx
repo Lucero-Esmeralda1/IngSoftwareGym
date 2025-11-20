@@ -6,16 +6,48 @@ const Sidebar = () => {
   return (
     <aside className="sidebar-container">
       <ul>
-        <li>🏋️ Dashboard</li>
-        <li>📋 Asistencias</li>
-        <li>🧑‍💼 Clientes</li>
-        <li>⚙️ Configuración</li>
+
+        <li>
+          🟡 <Link to="#" className="sidebar-link">¡Inscríbete ya!</Link>
+        </li>
+
+        <li>
+          📌 <Link to="#" className="sidebar-link">Tu espacio</Link>
+        </li>
+
+        <li>
+          💬 <Link to="#" className="sidebar-link">Habla con nosotros</Link>
+        </li>
+
+        <li>
+          🏋️‍♂️ <Link to="#" className="sidebar-link">Trainer</Link>
+        </li>
+
       </ul>
     </aside>
   );
 };
 
 export default Sidebar;
+
+// import React from "react";
+// import { Link } from "react-router-dom";
+// import "../components/Sidebar.css";
+
+// const Sidebar = () => {
+//   return (
+//     <aside className="sidebar-container">
+//       <ul>
+//         <li>🏋️ Dashboard</li>
+//         <li>📋 Asistencias</li>
+//         <li>🧑‍💼 Clientes</li>
+//         <li>⚙️ Configuración</li>
+//       </ul>
+//     </aside>
+//   );
+// };
+
+// export default Sidebar;
 
 
 // import React from "react";
