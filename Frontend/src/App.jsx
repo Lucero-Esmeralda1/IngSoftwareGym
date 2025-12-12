@@ -1,41 +1,49 @@
-import Router from "./routes/router";
+import { Routes, Route } from 'react-router-dom';
+
+import Login from './pages/Login';
+
+// CLIENTE
+import DashboardCliente from "./pages/DashboardCliente";
+import MisReservas from './pages/MisReservas';
+import ClasesDisponibles from './pages/ClasesDisponibles';
+import MiMembresia from './pages/MiMembresia';
+
+// INSTRUCTOR
+import DashboardInstructor from "./pages/DashboardInstructor";
+import MarcarAsistencia from './pages/MarcarAsistencia';
+
+// ADMIN
+import DashboardAdmin from "./pages/DashboardAdmin";
+import HorariosCrud from './pages/HorariosCrud';
+import InstructoresCrud from './pages/InstructoresCrud';
+import Reportes from './pages/Reportes';
 
 export default function App() {
-  return <Router />;
+  return (
+    <Routes>
+
+      {/* LOGIN */}
+      <Route path="/" element={<Login />} />
+
+      {/* CLIENTE */}
+      <Route path="/cliente" element={<DashboardCliente />} />
+      <Route path="/cliente/reservas" element={<MisReservas />} />
+      <Route path="/cliente/clases" element={<ClasesDisponibles />} />
+      <Route path="/cliente/membresia" element={<MiMembresia />} />
+
+      {/* INSTRUCTOR */}
+      <Route path="/entrenador" element={<DashboardInstructor />} />
+      <Route path="/entrenador/asistencia" element={<MarcarAsistencia />} />
+
+      {/* ADMIN */}
+      <Route path="/administrador" element={<DashboardAdmin />} />
+      <Route path="/administrador/horarios" element={<HorariosCrud />} />
+      <Route path="/administrador/instructores" element={<InstructoresCrud />} />
+      <Route path="/administrador/reportes" element={<Reportes />} />
+
+      {/* 404 */}
+      <Route path="*" element={<h1 style={{color:"white"}}>404 - Página no encontrada</h1>} />
+
+    </Routes>
+  );
 }
-
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-
-// function App() {
-//   const [count, setCount] = useState(0)
-
-//   return (
-//     <>
-//       <div>
-//         <a href="https://vite.dev" target="_blank">
-//           <img src={viteLogo} className="logo" alt="Vite logo" />
-//         </a>
-//         <a href="https://react.dev" target="_blank">
-//           <img src={reactLogo} className="logo react" alt="React logo" />
-//         </a>
-//       </div>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={() => setCount((count) => count + 1)}>
-//           count is {count}
-//         </button>
-//         <p>
-//           Edit <code>src/App.jsx</code> and save to test HMR
-//         </p>
-//       </div>
-//       <p className="read-the-docs">
-//         Click on the Vite and React logos to learn more
-//       </p>
-//     </>
-//   )
-// }
-
-// export default App

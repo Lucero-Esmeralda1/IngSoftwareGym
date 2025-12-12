@@ -1,23 +1,11 @@
-import "../components/Footer.css";
+import { Box, Typography, Link } from '@mui/material';
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="footer-container">
-      © {new Date().getFullYear()} Gym Aesthetic - Todos los derechos reservados.
-    </footer>
+    <Box component="footer" sx={{ p: 3, textAlign: 'center', background: 'rgba(0,0,0,.3)' }}>
+      <Typography variant="body2" color="text.secondary">
+        © 2025 GymControl · Mente sana, cuerpo sano
+      </Typography>
+    </Box>
   );
-};
-
-export default Footer;
-
-
-// import React from "react";
-// import "./Footer.css";
-
-// export default function Footer() {
-//   return (
-//     <footer className="footer">
-//       <p>© 2025 MiGym. Todos los derechos reservados.</p>
-//     </footer>
-//   );
-// }
+}
