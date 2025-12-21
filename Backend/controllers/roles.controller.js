@@ -1,6 +1,6 @@
 const RolesModel = require('../models/roles.model');
 
-// ✅ Obtener todos los roles
+// Obtener todos los roles
 exports.getRoles = async (req, res) => {
   try {
     const roles = await RolesModel.obtenerRoles();
@@ -11,7 +11,7 @@ exports.getRoles = async (req, res) => {
   }
 };
 
-// ✅ Obtener rol por ID
+// Obtener rol por ID
 exports.getRolById = async (req, res) => {
   try {
     const rol = await RolesModel.obtenerRolPorId(req.params.id);
