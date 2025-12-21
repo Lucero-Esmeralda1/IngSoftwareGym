@@ -3,6 +3,7 @@ import Layout from "./layouts/Layout";
 
 // PAGES
 import Login from "./pages/Login";
+import Register from "./pages/Register"; // 👈 IMPORTAR
 import DashboardCliente from "./pages/DashboardCliente";
 import DashboardInstructor from "./pages/DashboardInstructor";
 import DashboardAdmin from "./pages/DashboardAdmin";
@@ -13,6 +14,10 @@ export default function App() {
 
       {/* LOGIN sin layout */}
       <Route path="/" element={<Login />} />
+       <Route path="/register" element={<Register />} />
+
+       {/* REGISTER
+      <Route path="/register" element={<Register />} /> */}
 
       {/* RUTAS CON LAYOUT */}
       <Route element={<Layout />}>

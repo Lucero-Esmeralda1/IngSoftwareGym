@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import api from "../api/axios";
 import { Box, Button, Typography, Paper, Avatar, CssBaseline, TextField } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
@@ -137,6 +138,22 @@ export default function Login() {
                 >
                 {loading ? "Verificando..." : "Iniciar sesión"}
                 </Button>
+
+                {/* 👇 AGREGAR ESTE CÓDIGO NUEVO */}
+<Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+  ¿No tienes cuenta?{' '}
+  <Link 
+    to="/register" 
+    style={{ 
+      color: '#90caf9', 
+      textDecoration: 'none',
+      fontWeight: 500
+    }}
+  >
+    Regístrate aquí
+  </Link>
+</Typography>
+                
             </Box>
             </Paper>
         </Box>
