@@ -4,6 +4,7 @@ const clasesController = require('../controllers/clases.controller');
 
 router.get('/', clasesController.getClases);
 router.get('/:id', clasesController.getClaseById);
+router.get('/instructor/:id_entrenador', clasesController.getClasesPorInstructor); // ⬅️ NUEVA RUTA
 router.post('/', clasesController.createClase);
 router.put('/:id', clasesController.updateClase);
 router.delete('/:id', clasesController.deleteClase);

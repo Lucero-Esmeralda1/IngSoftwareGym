@@ -43,4 +43,30 @@ async function eliminarClase(id) {
   return result.affectedRows;
 }
 
-module.exports = { obtenerClases, obtenerClasePorId, crearClase, actualizarClase, eliminarClase };
+
+// ✅ NUEVO: Obtener clases por instructor (usando ID)
+async function obtenerClasesPorInstructor(id_entrenador) {
+  const [rows] = await db.query(`
+    SELECT 
+      c.id,
+      c.nombre,
+      c.descripcion,
+      c.cupos,
+      c.id_entrenador,
+      c.activo
+    FROM clases c
+    WHERE c.id_entrenador = ?
+    ORDER BY c.nombre ASC
+  `, [id_entrenador]);
+  return rows;
+}
+
+module.exports = { 
+  obtenerClases, 
+  obtenerClasePorId, 
+  obtenerClasesPorInstructor, // ⬅️ EXPORTAR el nuevo método
+  crearClase, 
+  actualizarClase, 
+  eliminarClase 
+};
+// module.exports = { obtenerClases, obtenerClasePorId, crearClase, actualizarClase, eliminarClase };

@@ -57,3 +57,15 @@ exports.deleteClase = async (req, res) => {
     res.status(500).json({ mensaje: 'Error al eliminar clase', error });
   }
 };
+
+// ✅ NUEVO: Obtener clases por instructor
+exports.getClasesPorInstructor = async (req, res) => {
+  try {
+    const { id_entrenador } = req.params;
+    const clases = await ClasesModel.obtenerClasesPorInstructor(id_entrenador);
+    res.json(clases);
+  } catch (error) {
+    console.error('❌ Error al obtener clases del instructor:', error);
+    res.status(500).json({ mensaje: 'Error al obtener clases del instructor', error });
+  }
+};
