@@ -1,12 +1,19 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout";
 
-// PAGES
+// PAGES - auth
 import Login from "./pages/Login";
-import Register from "./pages/Register"; // 👈 IMPORTAR
-import DashboardCliente from "./pages/DashboardCliente";
-import DashboardInstructor from "./pages/DashboardInstructor";
-import DashboardAdmin from "./pages/DashboardAdmin";
+import Register from "./pages/Register";
+
+//Pages - cliente
+import DashboardCliente from "./pages/cliente/DashboardCliente";
+
+//Pages - instructor
+import DashboardInstructor from "./pages/instructor/DashboardInstructor";
+// import MyClasses from "./pages/instructor/MyClasses";
+
+//Pages - admin
+import DashboardAdmin from "./pages/admin/DashboardAdmin";
 
 export default function App() {
   return (
@@ -25,12 +32,20 @@ export default function App() {
         {/* CLIENTE */}
         <Route path="/cliente" element={<DashboardCliente />} />
 
-        {/* INSTRUCTOR */}
+
+        {/* RUTAS INSTRUCTOR */}
         <Route path="/entrenador" element={<DashboardInstructor />} />
+        {/* <Route path="/entrenador/mis-clases" element={<MyClasses />} /> */}
+        
+        {/* REDIRECT para mantener compatibilidad */}
+        {/* <Route path="/instructor" element={<Navigate to="/entrenador" replace />} /> */}
+       
 
         {/* ADMIN */}
         <Route path="/administrador" element={<DashboardAdmin />} />
 
+        {/* REDIRECT para mantener compatibilidad
+        <Route path="/admin" element={<Navigate to="/administrador" replace />} /> */}
       </Route>
 
       {/* 404 */}
