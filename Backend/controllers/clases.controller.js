@@ -69,3 +69,15 @@ exports.getClasesPorInstructor = async (req, res) => {
     res.status(500).json({ mensaje: 'Error al obtener clases del instructor', error });
   }
 };
+
+exports.getMisClases = async (req, res) => {
+  try {
+    const idInstructor = req.user.id; // ← desde token
+
+    const clases = await ClasesModel.obtenerClasesPorInstructor(idInstructor);
+    res.json(clases);
+  } catch (error) {
+    console.error('❌ Error al obtener mis clases:', error);
+    res.status(500).json({ mensaje: 'Error al obtener mis clases' });
+  }
+};

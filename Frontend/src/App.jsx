@@ -10,7 +10,7 @@ import DashboardCliente from "./pages/cliente/DashboardCliente";
 
 //Pages - instructor
 import DashboardInstructor from "./pages/instructor/DashboardInstructor";
-// import MyClasses from "./pages/instructor/MyClasses";
+import MisClases from "./pages/instructor/MisClases";
 
 //Pages - admin
 import DashboardAdmin from "./pages/admin/DashboardAdmin";
@@ -35,6 +35,7 @@ export default function App() {
 
         {/* RUTAS INSTRUCTOR */}
         <Route path="/entrenador" element={<DashboardInstructor />} />
+        <Route path="/entrenador/mis-clases" element={<MisClases />}/>
         {/* <Route path="/entrenador/mis-clases" element={<MyClasses />} /> */}
         
         {/* REDIRECT para mantener compatibilidad */}
@@ -55,55 +56,3 @@ export default function App() {
   );
 }
 
-
-// import { Routes, Route } from 'react-router-dom';
-
-// import Login from './pages/Login';
-
-// // CLIENTE
-// import DashboardCliente from "./pages/DashboardCliente";
-// import MisReservas from './pages/MisReservas';
-// import ClasesDisponibles from './pages/ClasesDisponibles';
-// import MiMembresia from './pages/MiMembresia';
-
-// // INSTRUCTOR
-// import DashboardInstructor from "./pages/DashboardInstructor";
-// import MarcarAsistencia from './pages/MarcarAsistencia';
-
-// // ADMIN
-// import DashboardAdmin from "./pages/DashboardAdmin";
-// import HorariosCrud from './pages/HorariosCrud';
-// import InstructoresCrud from './pages/InstructoresCrud';
-// import Reportes from './pages/Reportes';
-
-// export default function App() {
-//   return (
-//     <Routes>
-
-//       {/* LOGIN */}
-//       <Route path="/" element={<Login />} />
-
-//       {/* CLIENTE */}
-//       <Route path="/cliente" element={<DashboardCliente />} />
-//       <Route path="/cliente/reservas" element={<MisReservas />} />
-//       <Route path="/cliente/clases" element={<ClasesDisponibles />} />
-//       <Route path="/cliente/membresia" element={<MiMembresia />} />
-
-//       {/* INSTRUCTOR */}
-//       <Route path="/entrenador" element={<DashboardInstructor />} />
-//       <Route path="/entrenador/asistencia" element={<MarcarAsistencia />} />
-
-//       {/* ADMIN */}
-//       <Route path="/administrador" element={<DashboardAdmin />} />
-//       <Route path="/administrador/horarios" element={<HorariosCrud />} />
-//       <Route path="/administrador/instructores" element={<InstructoresCrud />} />
-//       <Route path="/administrador/reportes" element={<Reportes />} />
-
-//       {/* 404 */}
-//       <Route path="*" element={<h1 style={{color:"white"}}>404 - Página no encontrada</h1>} />
-
-//     </Routes>
-
-//   );
-
-// }
