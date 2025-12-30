@@ -1,247 +1,32 @@
-import { useState, useEffect } from 'react';
-import { Box, Typography, Grid, Card, CardContent, Button } from "@mui/material";
-import { 
-  People as PeopleIcon,
-  AttachMoney as MoneyIcon,
-  TrendingUp as TrendingIcon,
-  FitnessCenter as FitnessIcon
-} from "@mui/icons-material";
-import RegisterUsuarios from "../Register"; // Tu componente de gestión de usuarios
+import { useState } from 'react';
+import { Box } from "@mui/material";
+import SidebarAdmin from "./components/SidebarAdmin";
+import DashboardHome from "./views/DashboardHome";
+import RegisterUsuarios from "../Register"; // Tu componente de usuarios
+import UsuariosView from './views/UsuariosView';
+import EntrenadoresView from './views/EntrenadoresView';
+
 
 export default function DashboardAdmin() {
-  const [usuario, setUsuario] = useState(null);
-  const [mostrarGestionUsuarios, setMostrarGestionUsuarios] = useState(false);
-
-  useEffect(() => {
-    // Obtener datos del usuario desde localStorage
-    const usuarioData = localStorage.getItem("usuario");
-    if (usuarioData) {
-      setUsuario(JSON.parse(usuarioData));
-    }
-  }, []);
-
-  // Datos de ejemplo (deberías obtenerlos de tu API)
-  const estadisticas = {
-    totalUsuarios: 150,
-    ingresosDelMes: 15240,
-    asistenciasHoy: 45,
-    membresiasActivas: 128
-  };
+  // Por defecto, la vista activa es 'dashboard'
+  const [activeTab, setActiveTab] = useState('dashboard');
 
   return (
-    <Box sx={{ p: 3 }}>
-      {/* HEADER */}
-      <Box mb={4}>
-        <Typography variant="h3" fontWeight={700} gutterBottom>
-          Panel de Administrador
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-          Bienvenido, {usuario?.nombre} {usuario?.apellido}
-        </Typography>
+    <Box sx={{ 
+      display: 'flex', 
+      minHeight: '100vh', 
+      bgcolor: '#000', // Fondo negro total como la imagen
+      color: 'white' 
+    }}>
+      {/* 1. MENÚ LATERAL (SIDEBAR) */}
+      <SidebarAdmin activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      {/* 2. ÁREA DE CONTENIDO DINÁMICO */}
+      <Box sx={{ flexGrow: 1, p: 4, mt: 2 }}>
+        {activeTab === 'dashboard' && <DashboardHome />}
+        {activeTab === 'usuarios' && <UsuariosView />}
+        {activeTab === 'entrenadores' && <EntrenadoresView />}
       </Box>
-
-      {/* TARJETAS DE ESTADÍSTICAS */}
-      <Grid container spacing={3} mb={4}>
-        
-        {/* Total Usuarios */}
-        <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ 
-            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-            color: "white"
-          }}>
-            <CardContent>
-              <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Box>
-                  <Typography variant="h4" fontWeight={700}>
-                    {estadisticas.totalUsuarios}
-                  </Typography>
-                  <Typography variant="body2">
-                    Total Usuarios
-                  </Typography>
-                </Box>
-                <PeopleIcon sx={{ fontSize: 50, opacity: 0.5 }} />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* Ingresos del Mes */}
-        <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ 
-            background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-            color: "white"
-          }}>
-            <CardContent>
-              <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Box>
-                  <Typography variant="h4" fontWeight={700}>
-                    S/ {estadisticas.ingresosDelMes.toLocaleString()}
-                  </Typography>
-                  <Typography variant="body2">
-                    Ingresos del Mes
-                  </Typography>
-                </Box>
-                <MoneyIcon sx={{ fontSize: 50, opacity: 0.5 }} />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* Asistencias Hoy */}
-        <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ 
-            background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-            color: "white"
-          }}>
-            <CardContent>
-              <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Box>
-                  <Typography variant="h4" fontWeight={700}>
-                    {estadisticas.asistenciasHoy}
-                  </Typography>
-                  <Typography variant="body2">
-                    Asistencias Hoy
-                  </Typography>
-                </Box>
-                <TrendingIcon sx={{ fontSize: 50, opacity: 0.5 }} />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* Membresías Activas */}
-        <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ 
-            background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
-            color: "white"
-          }}>
-            <CardContent>
-              <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Box>
-                  <Typography variant="h4" fontWeight={700}>
-                    {estadisticas.membresiasActivas}
-                  </Typography>
-                  <Typography variant="body2">
-                    Membresías Activas
-                  </Typography>
-                </Box>
-                <FitnessIcon sx={{ fontSize: 50, opacity: 0.5 }} />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-
-      </Grid>
-
-      {/* ACCESOS RÁPIDOS */}
-      <Grid container spacing={3} mb={4}>
-        <Grid item xs={12}>
-          <Typography variant="h5" fontWeight={600} mb={2}>
-            Accesos Rápidos
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={4}>
-          <Button
-            fullWidth
-            variant="contained"
-            size="large"
-            onClick={() => setMostrarGestionUsuarios(true)}
-            sx={{ 
-              py: 3,
-              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-            }}
-          >
-            👥 Gestionar Usuarios
-          </Button>
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={4}>
-          <Button
-            fullWidth
-            variant="contained"
-            size="large"
-            sx={{ 
-              py: 3,
-              background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-            }}
-          >
-            💪 Gestionar Membresías
-          </Button>
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={4}>
-          <Button
-            fullWidth
-            variant="contained"
-            size="large"
-            sx={{ 
-              py: 3,
-              background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
-            }}
-          >
-            💰 Registrar Pagos
-          </Button>
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={4}>
-          <Button
-            fullWidth
-            variant="contained"
-            size="large"
-            sx={{ 
-              py: 3,
-              background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
-            }}
-          >
-            📅 Ver Asistencias
-          </Button>
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={4}>
-          <Button
-            fullWidth
-            variant="contained"
-            size="large"
-            sx={{ 
-              py: 3,
-              background: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
-            }}
-          >
-            🏋️ Gestionar Clases
-          </Button>
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={4}>
-          <Button
-            fullWidth
-            variant="contained"
-            size="large"
-            sx={{ 
-              py: 3,
-              background: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)"
-            }}
-          >
-            📊 Ver Reportes
-          </Button>
-        </Grid>
-
-      </Grid>
-
-      {/* MOSTRAR GESTIÓN DE USUARIOS */}
-      {mostrarGestionUsuarios && (
-        <Box>
-          <Button 
-            variant="outlined" 
-            onClick={() => setMostrarGestionUsuarios(false)}
-            sx={{ mb: 2 }}
-          >
-            ← Volver al Dashboard
-          </Button>
-          <RegisterUsuarios />
-        </Box>
-      )}
-
     </Box>
   );
 }

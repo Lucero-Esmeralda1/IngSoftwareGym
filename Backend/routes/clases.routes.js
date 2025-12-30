@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database'); // Ajusta según tu configuración
+const db = require('../db/connection'); // Ajusta según tu configuración
 
 // GET - Obtener clases de un entrenador específico
 router.get('/instructor/:id', async (req, res) => {

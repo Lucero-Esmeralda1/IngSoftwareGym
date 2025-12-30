@@ -71,33 +71,29 @@ exports.deleteUsuario = async (req, res) => {
 // Login real con depuración exacta
 
 
+// En el Backend: usuarios.controller.js
 exports.login = async (req, res) => {
-
-  console.log("📌 BODY:", req.body);
-  console.log("📌 CORREO:", req.body.correo);
-  console.log("📌 PASSWORD:", req.body.password);
-
-  try {
     const { correo, password } = req.body;
 
-    const [rows] = await db.execute(
-      `SELECT u.id, u.nombre, u.apellido, u.correo, u.password, r.nombre AS rol 
-      FROM usuarios u 
-      JOIN roles r ON u.id_rol = r.id 
-      WHERE u.correo = ? AND u.password = ? AND u.activo = 1`,
-      [correo, password]
-    );
+    try {
+        // 1. La consulta DEBE incluir el JOIN con la tabla roles
+        const [rows] = await db.execute(
+            `SELECT u.id, u.nombre, u.apellido, u.correo, r.nombre AS rol 
+             FROM usuarios u 
+             INNER JOIN roles r ON u.id_rol = r.id 
+             WHERE u.correo = ? AND u.password = ? AND u.activo = 1`,
+            [correo, password]
+        );
 
-    console.log("📌 RESULTADO SQL:", rows);
+        if (rows.length === 0) {
+            return res.status(401).json({ mensaje: "Usuario o contraseña incorrectos" });
+        }
 
-    if (rows.length === 0) {
-      return res.status(404).json({ mensaje: "Usuario no encontrado" });
+        // 2. Enviamos el primer resultado (que ahora incluye la propiedad 'rol')
+        res.json(rows[0]); 
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error interno del servidor" });
     }
-
-    res.json(rows[0]);
-
-  } catch (error) {
-    console.log("❌ Error interno del servidor:", error);
-    res.status(500).json({ error: "Error interno del servidor" });
-  }
 };

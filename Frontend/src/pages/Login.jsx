@@ -20,41 +20,41 @@ export default function Login() {
     const esCorreoValido = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     // Login real con validaciones y mensajes amigables
-    const handleLogin = async () => {
-        setError("");
-        setLoading(true);
+    const handleLogin = async (e) => {
+            e.preventDefault(); // Evita que la página se recargue al enviar el formulario
+            try {
+                const res = await api.post("/usuarios/login", { correo, password });
+                
+                // 1. Verificamos en la consola del navegador qué llega exactamente
+                console.log("📌 OBJETO RECIBIDO DEL BACKEND:", res.data);
 
-        if (!correo || !password) {
-        setError("Por favor, completa todos los campos.");
-        setLoading(false);
-        return;
-        }
-        if (!esCorreoValido(correo)) {
-        setError("El correo no tiene un formato válido.");
-        setLoading(false);
-        return;
-        }
+                if (res.data && res.data.rol) {
+                    // Guardamos los datos en el localStorage
+                    localStorage.setItem("usuario", JSON.stringify(res.data));
 
-        try {
-        const res = await api.post("/usuarios/login", { correo, password });
-        console.log("✔ LOGIN OK:", res.data);
+                    const rolRecibido = res.data.rol; // Ejemplo: "Administrador"
 
-        localStorage.setItem("rol", res.data.rol);
-        localStorage.setItem("usuario", JSON.stringify(res.data));
-        localStorage.setItem("correo", res.data.correo);
-        nav("/" + res.data.rol.toLowerCase());
+                    // 2. Redirección manual basada en el nombre exacto de la BD
+                    if (rolRecibido === "Administrador") {
+                        console.log("🚀 Redirigiendo a panel de Administrador...");
+                        nav("/administrador");
+                    } else if (rolRecibido === "Entrenador") {
+                        console.log("🚀 Redirigiendo a panel de Entrenador...");
+                        nav("/entrenador");
+                    } else {
+                        console.log("🚀 Redirigiendo a panel de Cliente...");
+                        nav("/cliente");
+                    }
+                } else {
+                    console.error("❌ El backend no devolvió la propiedad 'rol'");
+                    alert("Error: No se pudo determinar el rol del usuario.");
+                }
 
-        } catch (err) {
-        console.log("❌ ERROR LOGIN:", err);
-        if (err.response?.status === 401 || err.response?.status === 404) {
-            setError("Usuario o contraseña incorrectos.");
-        } else {
-            setError("Error al iniciar sesión. Inténtalo de nuevo.");
-        }
-        } finally {
-        setLoading(false);
-        }
-    };
+            } catch (error) {
+                console.error("❌ ERROR EN LA PETICIÓN:", error);
+                alert("Usuario o contraseña incorrectos");
+            }
+        };
 
     return (
         <ThemeProvider theme={gymTheme}>
